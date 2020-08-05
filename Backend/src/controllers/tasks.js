@@ -17,8 +17,26 @@ tasksRouter.post("/", async (request, response) => {
     const newTask = await task.save();
     response.json(newTask);
   } catch (exception) {
-    console.log("asd");
+    console.log(exception);
   }
 });
 
-module.exports = tasksRouter;
+tasksRouter.put("/:id", async (request, response) => {
+  try {
+    const task = await Task.findByIdAndUpdate(request.params.id, request.body);
+    response.json(task);
+  } catch (exception) {
+    console.log(exception);
+  }
+});
+
+tasksRouter.delete("/:id", async (request, response) => {
+  try {
+    await Task.findByIdAndRemove(request.params.id);
+    response.status(204).end();
+  } catch (exception) {
+    console.log(exception);
+  }
+});
+
+tasksRouter.module.exports = tasksRouter;
