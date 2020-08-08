@@ -9,13 +9,13 @@ tasksRouter.get("/", async (request, response) => {
 tasksRouter.post("/", async (request, response) => {
   const body = request.body;
   try {
-    const task = {
+    const task = new Task({
       name: body.name,
       description: body.description,
       status: body.status,
-    };
+    });
     const newTask = await task.save();
-    response.json(newTask);
+    response.json(newTask.toJSON());
   } catch (exception) {
     console.log(exception);
   }
@@ -23,8 +23,10 @@ tasksRouter.post("/", async (request, response) => {
 
 tasksRouter.put("/:id", async (request, response) => {
   try {
-    const task = await Task.findByIdAndUpdate(request.params.id, request.body);
-    response.json(task);
+    const task = await Task.findByIdAndUpdate(request.params.id, request.body, {
+      new: true,
+    });
+    response.json(task.toJSON());
   } catch (exception) {
     console.log(exception);
   }
@@ -39,4 +41,4 @@ tasksRouter.delete("/:id", async (request, response) => {
   }
 });
 
-tasksRouter.module.exports = tasksRouter;
+module.exports = tasksRouter;
