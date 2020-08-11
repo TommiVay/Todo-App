@@ -9,7 +9,13 @@
   },
   "plugins": ["prettier", "react"],
   "rules": {
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "no-unused-vars": [
+      "error",
+      {
+        "varsIgnorePattern": "React"
+      }
+    ]
   },
   "env": {
     "es6": true,

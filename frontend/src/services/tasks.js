@@ -8,6 +8,8 @@ const getAll = async () => {
 };
 
 const remove = async (task) => {
+  console.log("remove");
+  console.log(task._id);
   const response = await axios.delete(URI + "/" + task._id);
   return response;
 };

@@ -23,10 +23,11 @@ tasksRouter.post("/", async (request, response) => {
 
 tasksRouter.put("/:id", async (request, response) => {
   try {
-    const task = await Task.findByIdAndUpdate(request.params.id, request.body, {
+    await Task.findByIdAndUpdate(request.params.id, request.body, {
       new: true,
     });
-    response.json(task.toJSON());
+    const tasks = await Task.find({});
+    response.json(tasks.map((t) => t.toJSON()));
   } catch (exception) {
     console.log(exception);
   }
@@ -34,6 +35,7 @@ tasksRouter.put("/:id", async (request, response) => {
 
 tasksRouter.delete("/:id", async (request, response) => {
   try {
+    console.log(request.params.id);
     await Task.findByIdAndRemove(request.params.id);
     response.status(204).end();
   } catch (exception) {
