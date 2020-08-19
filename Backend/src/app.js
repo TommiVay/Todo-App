@@ -4,6 +4,8 @@ const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
 const taskRouter = require("./controllers/tasks");
+const loginRouter = require("./controllers/login");
+const userRouter = require("./controllers/users");
 const bodyParser = require("body-parser");
 const requestLogger = require("./utils/middleware");
 
@@ -24,5 +26,7 @@ app.use(express.static("build"));
 app.use(bodyParser.json());
 app.use(requestLogger);
 app.use("/tasks", taskRouter);
+app.use("/login", loginRouter);
+app.use("/users", userRouter);
 
 module.exports = app;

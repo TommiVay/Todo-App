@@ -1,11 +1,28 @@
 import React from "react";
 import "../index.css";
+import { useField } from "../hooks/useField";
 
-const TaskForm = ({ name, desc, handleSubmit }) => {
-  const removeReset = ({reset, ...rest}) => rest
-  const checkForm = name.value === "" ? true : desc.value === "" ? true : false
+const TaskForm = ({ createTask }) => {
+  const name = useField("text");
+  const description = useField("text");
+  // eslint-disable-next-line no-unused-vars
+  const removeReset = ({ reset, ...rest }) => rest;
+  const checkForm =
+    name.value === "" ? true : description.value === "" ? true : false;
+
+  const addTask = async (event) => {
+    event.preventDefault();
+    createTask({
+      name: name.value,
+      description: description.value,
+      status: true,
+    });
+    name.reset();
+    description.reset();
+  };
+
   return (
-    <form className="Form" onSubmit={handleSubmit}>
+    <form className="Form" onSubmit={addTask}>
       <div>
         <div>
           <label>Name</label>
@@ -13,11 +30,11 @@ const TaskForm = ({ name, desc, handleSubmit }) => {
         </div>
         <div>
           <label>Description</label>
-          <input {...removeReset(desc)} />
+          <input {...removeReset(description)} />
         </div>
       </div>
       <button
-      type = "submit"
+        type="submit"
         disabled={checkForm}
         className={checkForm ? "Form--buttonDisabled" : "Form--buttonActive"}
       >

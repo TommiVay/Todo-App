@@ -23,5 +23,4 @@ const update = async (task) => {
   const response = await axios.put(URI + "/" + task._id, task);
   return response.data;
 };
-
 export default { getAll, remove, create, update };

@@ -2,7 +2,7 @@ const tasksRouter = require("express").Router();
 const Task = require("../models/task");
 
 tasksRouter.get("/", async (request, response) => {
-  const tasks = await Task.find({});
+  const tasks = await Task.find({}).populate("user", { username: 1, _id: 1 });
   response.json(tasks.map((t) => t.toJSON()));
 });
 
@@ -13,6 +13,7 @@ tasksRouter.post("/", async (request, response) => {
       name: body.name,
       description: body.description,
       status: body.status,
+      user: body.user._id,
     });
     const newTask = await task.save();
     response.json(newTask.toJSON());

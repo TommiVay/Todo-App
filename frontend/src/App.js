@@ -1,64 +1,96 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
-import TaskForm from "./components/TaskForm";
-import Task from "./components/Task";
+import LoginForm from "./components/LoginForm";
+import TodoPage from "./components/TodoPage";
+import {
+  Redirect,
+  Route,
+  BrowserRouter as Router,
+  Switch,
+} from "react-router-dom";
+
 /* eslint-enable no-unused-vars */
-import taskService from "./services/tasks";
-import { useField } from "./hooks/useField";
+
+import loginService from "./services/login";
 
 function App() {
-  const name = useField("text");
-  const description = useField("text");
-  const [tasks, setTasks] = useState([]);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    getTasks();
+    const loggedUserJSON = window.localStorage.getItem("loggedTodoAppUser");
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON);
+      setUser(user);
+    }
   }, []);
 
-  const getTasks = async () => {
-    const data = await taskService.getAll();
-    setTasks(data);
+  const handleLogin = async (credentials) => {
+    const user = await loginService.login(credentials);
+    window.localStorage.setItem("loggedTodoAppUser", JSON.stringify(user));
+    setUser(user);
   };
 
-  const addTask = async (event) => {
-    event.preventDefault();
-    const newTask = {
-      name: name.value,
-      description: description.value,
-      status: true,
-    };
-    const data = await taskService.create(newTask);
-    setTasks(tasks.concat(data));
-    name.reset();
-    description.reset();
+  const handleLogout = () => {
+    window.localStorage.clear();
+    setUser(null);
   };
 
-  const deleteTask = async (task) => {
-    console.log(task);
-    taskService.remove(task);
-    setTasks(tasks.filter((t) => t._id !== task._id));
-  };
-
-  const updateTask = async (task) => {
-    console.log("update");
-    task.status = false;
-    const tasks = await taskService.update(task);
-    setTasks(tasks);
+  // eslint-disable-next-line no-unused-vars
+  const PrivateRoute = ({ children, ...rest }) => {
+    return (
+      <Route
+        {...rest}
+        render={() =>
+          user != null ? (
+            children
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/login",
+              }}
+            />
+          )
+        }
+      />
+    );
   };
 
   return (
-    <div className="App">
-      <h1>My Todos</h1>
-      <TaskForm name={name} desc={description} handleSubmit={addTask} />
-      {tasks.map((task) => (
-        <Task
-          key={task._id}
-          task={task}
-          handleDelete={deleteTask}
-          handleUpdate={updateTask}
-        />
-      ))}
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <Redirect
+            to={{
+              pathname: "/todo",
+            }}
+          />
+        </Route>
+
+        <Route exact path="/todo">
+          {user != null ? (
+            <TodoPage handleLogout={handleLogout} />
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/login",
+              }}
+            />
+          )}
+        </Route>
+
+        <Route exact path="/login">
+          {user === null ? (
+            <LoginForm handleLogin={handleLogin} />
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/todo",
+              }}
+            />
+          )}
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
