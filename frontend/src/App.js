@@ -36,22 +36,20 @@ function App() {
   };
 
   // eslint-disable-next-line no-unused-vars
-  const PrivateRoute = ({ children, ...rest }) => {
+  const AuthenticatedRoute = ({ children, ...rest }) => {
     return (
-      <Route
-        {...rest}
-        render={() =>
-          user != null ? (
-            children
-          ) : (
-            <Redirect
-              to={{
-                pathname: "/login",
-              }}
-            />
-          )
-        }
-      />
+      <Route {...rest}>
+        {user != null ? children : <Redirect to={{ pathname: "/login" }} />}
+      </Route>
+    );
+  };
+
+  // eslint-disable-next-line no-unused-vars
+  const UnauthenticatedRoute = ({ children, ...rest }) => {
+    return (
+      <Route {...rest}>
+        {user === null ? children : <Redirect to={{ pathname: "/todo" }} />}
+      </Route>
     );
   };
 
@@ -66,29 +64,13 @@ function App() {
           />
         </Route>
 
-        <Route exact path="/todo">
-          {user != null ? (
-            <TodoPage handleLogout={handleLogout} />
-          ) : (
-            <Redirect
-              to={{
-                pathname: "/login",
-              }}
-            />
-          )}
-        </Route>
+        <UnauthenticatedRoute exact path="/login">
+          <LoginForm handleLogin={handleLogin} />
+        </UnauthenticatedRoute>
 
-        <Route exact path="/login">
-          {user === null ? (
-            <LoginForm handleLogin={handleLogin} />
-          ) : (
-            <Redirect
-              to={{
-                pathname: "/todo",
-              }}
-            />
-          )}
-        </Route>
+        <AuthenticatedRoute exact path="/todo">
+          <TodoPage handleLogout={handleLogout} />
+        </AuthenticatedRoute>
       </Switch>
     </Router>
   );
