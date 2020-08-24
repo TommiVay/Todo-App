@@ -4,13 +4,11 @@ const User = require("../models/user");
 
 usersRouter.post("/", async (request, response, next) => {
   const body = request.body;
-  if (body.password === undefined) {
-    return response.status(400).json({ error: "password missing" });
-  }
-  if (body.password.length < 3) {
-    return response
-      .status(400)
-      .json({ error: "password too short (min lenght 3) or missing" });
+
+  const users = await User.find({});
+  const usernames = users.map((u) => u.username);
+  if (usernames.includes(body.username)) {
+    return response.status(400).json({ error: "Username already taken" });
   }
   try {
     const saltRounds = 10;

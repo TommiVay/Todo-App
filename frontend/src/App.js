@@ -72,7 +72,7 @@ function App() {
           <LoginForm handleLogin={handleLogin} />
         </UnauthenticatedRoute>
         <UnauthenticatedRoute exact path="/register">
-          <SingupForm />
+          <SingupForm handleLogin={handleLogin} />
         </UnauthenticatedRoute>
 
         <AuthenticatedRoute exact path="/todo">

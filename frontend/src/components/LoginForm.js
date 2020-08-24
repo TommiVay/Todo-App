@@ -38,7 +38,7 @@ const LoginForm = ({ handleLogin }) => {
   };
 
   const fieldsEmpty = () =>
-    (username.value.length && password.value.length) != 0;
+    (username.value.length && password.value.length) !== 0;
 
   // eslint-disable-next-line no-unused-vars
   const removeReset = ({ reset, ...rest }) => rest;

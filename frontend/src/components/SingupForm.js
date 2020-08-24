@@ -14,7 +14,7 @@ import {
 } from "react-bootstrap";
 /* eslint-enable no-unused-vars */
 
-const SingupForm = () => {
+const SingupForm = ({ handleLogin }) => {
   const history = useHistory();
   const username = useField("text");
   const password = useField("password");
@@ -28,12 +28,26 @@ const SingupForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (username.value.length || password.value.length < 3) {
+    if (username.value.length < 3 || password.value.length < 3) {
       notify("Username and password must be atleast 3 characters long");
       return;
     }
-
-    userService.create({
+    if (password.value !== confirmPassword.value) {
+      notify("Passwords are not matching");
+      password.reset();
+      confirmPassword.reset();
+      return;
+    }
+    try {
+      await userService.create({
+        username: username.value,
+        password: password.value,
+      });
+    } catch (e) {
+      notify(e.response.data.error);
+      return;
+    }
+    await handleLogin({
       username: username.value,
       password: password.value,
     });
@@ -42,7 +56,7 @@ const SingupForm = () => {
   const fieldsEmpty = () =>
     (username.value.length &&
       password.value.length &&
-      confirmPassword.value.length) != 0;
+      confirmPassword.value.length) !== 0;
 
   // eslint-disable-next-line no-unused-vars
   const removeReset = ({ reset, ...rest }) => rest;
