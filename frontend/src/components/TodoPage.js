@@ -36,7 +36,9 @@ const TodoPage = ({ handleLogout }) => {
 
   return (
     <div className="App">
-      <button onClick={handleLogout}>Logout</button>
+      <button onClick={handleLogout} className="Logout">
+        Logout
+      </button>
       <h1>My Todos</h1>
       <TaskForm createTask={createTask} />
       {tasks.map((task) => (

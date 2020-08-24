@@ -1,20 +1,24 @@
 import React, { useState } from "react";
+import userService from "../services/user";
 import { useField } from "../hooks/useField";
 import { useHistory } from "react-router-dom";
+
 /* eslint-disable no-unused-vars */
 import {
   Alert,
   Button,
+  HelpBlock,
   FormGroup,
   FormControl,
   FormLabel,
 } from "react-bootstrap";
 /* eslint-enable no-unused-vars */
 
-const LoginForm = ({ handleLogin }) => {
+const SingupForm = () => {
   const history = useHistory();
   const username = useField("text");
   const password = useField("password");
+  const confirmPassword = useField("password");
   const [notification, setNotification] = useState(null);
 
   const notify = (message) => {
@@ -24,50 +28,55 @@ const LoginForm = ({ handleLogin }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      await handleLogin({
-        username: username.value,
-        password: password.value,
-      });
-    } catch (e) {
-      notify(e.response.data.error);
+    if (username.value.length || password.value.length < 3) {
+      notify("Username and password must be atleast 3 characters long");
+      return;
     }
 
-    username.reset();
-    password.reset();
+    userService.create({
+      username: username.value,
+      password: password.value,
+    });
   };
 
   const fieldsEmpty = () =>
-    (username.value.length && password.value.length) != 0;
+    (username.value.length &&
+      password.value.length &&
+      confirmPassword.value.length) != 0;
 
   // eslint-disable-next-line no-unused-vars
   const removeReset = ({ reset, ...rest }) => rest;
+
   return (
     <div className="Login">
       <h1>Todo App</h1>
       <form onSubmit={handleSubmit}>
-        <h2>Sing in</h2>
-        <Alert show={notification != null} variant="danger">
+        <h2>Sing up</h2>
+        <Alert show={notification !== null} variant="danger">
           {notification}
         </Alert>
-        <FormGroup controlId="email" size="lg">
+        <FormGroup controlId="email" size="large">
           <FormLabel>Username</FormLabel>
           <FormControl autoFocus {...removeReset(username)} />
         </FormGroup>
-        <FormGroup controlId="password" size="lg">
+        <FormGroup controlId="password" size="large">
           <FormLabel>Password</FormLabel>
-          <FormControl {...removeReset(password)} />
+          <FormControl type="password" {...removeReset(password)} />
+        </FormGroup>
+        <FormGroup controlId="confirmPassword" size="large">
+          <FormLabel>Confirm Password</FormLabel>
+          <FormControl type="password" {...removeReset(confirmPassword)} />
         </FormGroup>
         <Button disabled={!fieldsEmpty()} block size="lg" type="submit">
-          Sing in
+          Sing up
         </Button>
-        <p>or</p>
-        <p className="Redirect" onClick={() => history.push("/register")}>
-          create an account
+        <p>Already have an account?</p>
+        <p className="Redirect" onClick={() => history.push("/login")}>
+          Sing in
         </p>
       </form>
     </div>
   );
 };
 
-export default LoginForm;
+export default SingupForm;

@@ -11,10 +11,10 @@ body {
 
 .App {
   max-width: 728px;
-  margin: 4rem auto;
+  margin: 2rem auto;
 }
 
-.App > h1 {
+h1 {
   text-align: center;
   margin: 1rem 0;
 }
@@ -56,6 +56,37 @@ body {
   background: #12a112;
   color: #fff;
   margin-right: 1rem;
+}
+
+.Login {
+  padding: 1rem;
+}
+
+.Login form {
+  margin: 0 auto;
+  max-width: 420px;
+  min-height: 500px;
+  background: #444;
+  padding: 2rem 2rem;
+}
+
+p {
+  text-align: center;
+  margin: 1rem;
+}
+
+.Redirect {
+  font-size: 1.5rem;
+  color: #0000ee;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.Logout {
+  float: right;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  border: none;
 }
 
 .Form {

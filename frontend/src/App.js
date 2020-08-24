@@ -1,7 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./index.css";
+
 import LoginForm from "./components/LoginForm";
 import TodoPage from "./components/TodoPage";
+import SingupForm from "./components/SingupForm";
 import {
   Redirect,
   Route,
@@ -66,6 +70,9 @@ function App() {
 
         <UnauthenticatedRoute exact path="/login">
           <LoginForm handleLogin={handleLogin} />
+        </UnauthenticatedRoute>
+        <UnauthenticatedRoute exact path="/register">
+          <SingupForm />
         </UnauthenticatedRoute>
 
         <AuthenticatedRoute exact path="/todo">

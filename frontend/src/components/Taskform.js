@@ -1,5 +1,4 @@
 import React from "react";
-import "../index.css";
 import { useField } from "../hooks/useField";
 
 const TaskForm = ({ createTask }) => {
