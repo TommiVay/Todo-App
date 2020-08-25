@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
+import taskService from "./services/tasks";
 
 import LoginForm from "./components/LoginForm";
 import TodoPage from "./components/TodoPage";
@@ -25,6 +26,7 @@ function App() {
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON);
       setUser(user);
+      taskService.setToken(user.token);
     }
   }, []);
 
@@ -32,10 +34,12 @@ function App() {
     const user = await loginService.login(credentials);
     window.localStorage.setItem("loggedTodoAppUser", JSON.stringify(user));
     setUser(user);
+    taskService.setToken(user.token);
   };
 
   const handleLogout = () => {
     window.localStorage.clear();
+    taskService.setToken(null);
     setUser(null);
   };
 

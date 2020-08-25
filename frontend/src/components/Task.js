@@ -2,8 +2,6 @@ import React from "react";
 
 const Task = ({ task, handleUpdate, handleDelete }) => {
   const style = task.status ? "" : "line-through";
-  console.log("Task");
-  console.log(task);
   return (
     <div className="Task">
       <div className="Task--text">

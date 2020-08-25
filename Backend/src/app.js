@@ -7,12 +7,14 @@ const taskRouter = require("./controllers/tasks");
 const loginRouter = require("./controllers/login");
 const userRouter = require("./controllers/users");
 const bodyParser = require("body-parser");
-const requestLogger = require("./utils/middleware");
+const middleware = require("./utils/middleware");
 
 mongoose
   .connect(config.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
   })
   .then(() => {
     console.log("connected to MongoDB");
@@ -24,9 +26,11 @@ mongoose
 app.use(cors());
 app.use(express.static("build"));
 app.use(bodyParser.json());
-app.use(requestLogger);
+app.use(middleware.requestLogger);
+app.use(middleware.tokenExtractor);
 app.use("/tasks", taskRouter);
 app.use("/login", loginRouter);
 app.use("/users", userRouter);
+app.use(middleware.unknownEndpoint);
 
 module.exports = app;

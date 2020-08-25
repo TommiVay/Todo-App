@@ -31,10 +31,9 @@ const LoginForm = ({ handleLogin }) => {
       });
     } catch (e) {
       notify(e.response.data.error);
+      username.reset();
+      password.reset();
     }
-
-    username.reset();
-    password.reset();
   };
 
   const fieldsEmpty = () =>

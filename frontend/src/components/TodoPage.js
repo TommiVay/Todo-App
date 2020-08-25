@@ -13,7 +13,7 @@ const TodoPage = ({ handleLogout }) => {
   }, []);
 
   const getTasks = async () => {
-    const data = await taskService.getAll();
+    const data = await taskService.getTasks();
     setTasks(data);
   };
 
@@ -23,7 +23,6 @@ const TodoPage = ({ handleLogout }) => {
   };
 
   const deleteTask = async (task) => {
-    console.log(task);
     taskService.remove(task);
     setTasks(tasks.filter((t) => t._id !== task._id));
   };

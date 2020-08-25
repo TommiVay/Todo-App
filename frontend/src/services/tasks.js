@@ -2,25 +2,37 @@ import axios from "axios";
 
 const URI = "http://localhost:3003/tasks";
 
-const getAll = async () => {
-  const response = await axios.get(URI);
+let token = null;
+
+const setToken = (newToken) => {
+  token = `bearer ${newToken}`;
+};
+
+const getTasks = async () => {
+  const config = {
+    headers: { authorization: token },
+  };
+  const response = await axios.get(URI + "/my", config);
   return response.data;
 };
 
 const remove = async (task) => {
-  console.log("remove");
-  console.log(task._id);
-  const response = await axios.delete(URI + "/" + task._id);
+  const config = {
+    headers: { authorization: token },
+  };
+  const response = await axios.delete(URI + "/" + task._id, config);
   return response;
 };
 
 const create = async (task) => {
-  const response = await axios.post(URI, task);
+  const config = { headers: { authorization: token } };
+  const response = await axios.post(URI, task, config);
   return response.data;
 };
 
 const update = async (task) => {
-  const response = await axios.put(URI + "/" + task._id, task);
+  const config = { headers: { authorization: token } };
+  const response = await axios.put(URI + "/" + task._id, task, config);
   return response.data;
 };
-export default { getAll, remove, create, update };
+export default { getTasks, remove, create, update, setToken };
