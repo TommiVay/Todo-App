@@ -1,6 +1,5 @@
 import axios from "axios";
-
-const URI = "http://localhost:3003/tasks";
+const URI = "/tasks";
 
 let token = null;
 
