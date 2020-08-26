@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import userService from "../services/user";
 import { useField } from "../hooks/useField";
 import { useHistory } from "react-router-dom";
+import logo from "./img/GitHub-Mark-Light-32px.png";
 
 /* eslint-disable no-unused-vars */
 import {
@@ -83,10 +84,19 @@ const SingupForm = ({ handleLogin }) => {
         <Button disabled={!fieldsEmpty()} block size="lg" type="submit">
           Sing up
         </Button>
-        <p>Already have an account?</p>
-        <p className="Redirect" onClick={() => history.push("/login")}>
-          Sing in
-        </p>
+        <div className="Links">
+          <p>Already have an account?</p>
+          <p className="Redirect" onClick={() => history.push("/login")}>
+            Sing in
+          </p>
+          <a
+            href="https://github.com/TommiVay"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={logo} alt="Github" />
+          </a>
+        </div>
       </form>
     </div>
   );

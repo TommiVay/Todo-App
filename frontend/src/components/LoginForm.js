@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useField } from "../hooks/useField";
 import { useHistory } from "react-router-dom";
+import logo from "./img/GitHub-Mark-Light-32px.png";
 /* eslint-disable no-unused-vars */
 import {
   Alert,
@@ -60,10 +61,19 @@ const LoginForm = ({ handleLogin }) => {
         <Button disabled={!fieldsEmpty()} block size="lg" type="submit">
           Sing in
         </Button>
-        <p>or</p>
-        <p className="Redirect" onClick={() => history.push("/register")}>
-          create an account
-        </p>
+        <div className="Links">
+          <p>or</p>
+          <p className="Redirect" onClick={() => history.push("/register")}>
+            create an account
+          </p>
+          <a
+            href="https://github.com/TommiVay"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={logo} alt="Github" />
+          </a>
+        </div>
       </form>
     </div>
   );

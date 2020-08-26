@@ -110,6 +110,7 @@ body {
 
 .Login {
   padding: 1rem;
+  align-items: center;
 }
 
 .Login form {
@@ -136,7 +137,12 @@ body {
   text-decoration: underline;
 }
 
-p {
+.Links {
   text-align: center;
-  margin: 1rem;
+  padding: 1rem;
+}
+
+.Git {
+  float: left;
+  padding: 0.5rem 0.5rem;
 }

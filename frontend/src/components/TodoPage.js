@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import taskService from "../services/tasks";
+import logo from "./img/GitHub-Mark-Light-32px.png";
+
 /* eslint-disable no-unused-vars */
 import TaskForm from "./TaskForm";
 import Task from "./Task";
@@ -37,10 +39,20 @@ const TodoPage = ({ handleLogout }) => {
 
   return (
     <Container className="App">
-      <Button onClick={handleLogout} className="Logout">
-        Logout
-      </Button>
-      <h1>My Todos</h1>
+      <div className="Links">
+        <a
+          className="Git"
+          href="https://github.com/TommiVay"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src={logo} alt="Github" />
+        </a>
+        <Button onClick={handleLogout} className="Logout">
+          Logout
+        </Button>
+        <h1>My Todos</h1>
+      </div>
       <TaskForm createTask={createTask} />
       {tasks.map((task) => (
         <Task
