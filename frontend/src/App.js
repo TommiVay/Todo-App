@@ -12,9 +12,7 @@ import {
   BrowserRouter as Router,
   Switch,
 } from "react-router-dom";
-
 /* eslint-enable no-unused-vars */
-
 import loginService from "./services/login";
 
 function App() {
