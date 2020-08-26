@@ -31,6 +31,5 @@ app.use(middleware.tokenExtractor);
 app.use("/tasks", taskRouter);
 app.use("/login", loginRouter);
 app.use("/users", userRouter);
-app.use(middleware.unknownEndpoint);
 
 module.exports = app;

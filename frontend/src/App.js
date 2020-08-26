@@ -72,14 +72,14 @@ function App() {
           />
         </Route>
 
-        <UnauthenticatedRoute exact path="/login">
+        <UnauthenticatedRoute path="/login">
           <LoginForm handleLogin={handleLogin} />
         </UnauthenticatedRoute>
-        <UnauthenticatedRoute exact path="/register">
+        <UnauthenticatedRoute path="/register">
           <SingupForm handleLogin={handleLogin} />
         </UnauthenticatedRoute>
 
-        <AuthenticatedRoute exact path="/todo">
+        <AuthenticatedRoute path="/todo">
           <TodoPage handleLogout={handleLogout} />
         </AuthenticatedRoute>
       </Switch>

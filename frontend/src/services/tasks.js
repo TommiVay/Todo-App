@@ -1,5 +1,5 @@
 import axios from "axios";
-const URI = "/tasks";
+const URI = "https://evening-wave-78798.herokuapp.com/tasks";
 
 let token = null;
 

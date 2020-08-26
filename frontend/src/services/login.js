@@ -1,8 +1,8 @@
 import Axios from "axios";
-const baseUrl = "/login";
+const URI = "https://evening-wave-78798.herokuapp.com/login";
 
 const login = async (credentials) => {
-  const response = await Axios.post(baseUrl, credentials);
+  const response = await Axios.post(URI, credentials);
   return response.data;
 };
 export default { login };
