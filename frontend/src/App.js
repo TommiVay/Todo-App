@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import taskService from "./services/tasks";
-
 import LoginForm from "./components/LoginForm";
 import TodoPage from "./components/TodoPage";
 import SingupForm from "./components/SingupForm";
