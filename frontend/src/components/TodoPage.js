@@ -3,6 +3,8 @@ import taskService from "../services/tasks";
 /* eslint-disable no-unused-vars */
 import TaskForm from "./TaskForm";
 import Task from "./Task";
+import { Container, Button } from "react-bootstrap";
+
 /* eslint-enable no-unused-vars */
 
 const TodoPage = ({ handleLogout }) => {
@@ -34,10 +36,10 @@ const TodoPage = ({ handleLogout }) => {
   };
 
   return (
-    <div className="App">
-      <button onClick={handleLogout} className="Logout">
+    <Container className="App">
+      <Button onClick={handleLogout} className="Logout">
         Logout
-      </button>
+      </Button>
       <h1>My Todos</h1>
       <TaskForm createTask={createTask} />
       {tasks.map((task) => (
@@ -48,7 +50,7 @@ const TodoPage = ({ handleLogout }) => {
           handleUpdate={updateTask}
         />
       ))}
-    </div>
+    </Container>
   );
 };
 

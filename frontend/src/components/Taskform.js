@@ -1,5 +1,8 @@
 import React from "react";
 import { useField } from "../hooks/useField";
+/* eslint-disable no-unused-vars */
+import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
+/* eslint-enable no-unused-vars */
 
 const TaskForm = ({ createTask }) => {
   const name = useField("text");
@@ -23,22 +26,19 @@ const TaskForm = ({ createTask }) => {
   return (
     <form className="Form" onSubmit={addTask}>
       <div>
-        <div>
-          <label>Name</label>
-          <input {...removeReset(name)} />
-        </div>
-        <div>
-          <label>Description</label>
-          <input {...removeReset(description)} />
-        </div>
+        <FormGroup controlId="name" size="large">
+          <FormLabel>Name</FormLabel>
+          <FormControl variant="" autoFocus {...removeReset(name)} />
+        </FormGroup>
+
+        <FormGroup controlId="description" size="large">
+          <FormLabel>Description</FormLabel>
+          <FormControl {...removeReset(description)} />
+        </FormGroup>
       </div>
-      <button
-        type="submit"
-        disabled={checkForm}
-        className={checkForm ? "Form--buttonDisabled" : "Form--buttonActive"}
-      >
+      <Button variant="" type="submit" disabled={checkForm}>
         Add task
-      </button>
+      </Button>
     </form>
   );
 };

@@ -7,7 +7,6 @@ import { useHistory } from "react-router-dom";
 import {
   Alert,
   Button,
-  HelpBlock,
   FormGroup,
   FormControl,
   FormLabel,
@@ -69,17 +68,17 @@ const SingupForm = ({ handleLogin }) => {
         <Alert show={notification !== null} variant="danger">
           {notification}
         </Alert>
-        <FormGroup controlId="email" size="large">
+        <FormGroup controlId="username" size="large">
           <FormLabel>Username</FormLabel>
           <FormControl autoFocus {...removeReset(username)} />
         </FormGroup>
         <FormGroup controlId="password" size="large">
           <FormLabel>Password</FormLabel>
-          <FormControl type="password" {...removeReset(password)} />
+          <FormControl {...removeReset(password)} />
         </FormGroup>
         <FormGroup controlId="confirmPassword" size="large">
           <FormLabel>Confirm Password</FormLabel>
-          <FormControl type="password" {...removeReset(confirmPassword)} />
+          <FormControl {...removeReset(confirmPassword)} />
         </FormGroup>
         <Button disabled={!fieldsEmpty()} block size="lg" type="submit">
           Sing up

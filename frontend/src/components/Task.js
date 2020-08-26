@@ -1,4 +1,7 @@
 import React from "react";
+/* eslint-disable no-unused-vars */
+import { Button } from "react-bootstrap";
+/* eslint-enable no-unused-vars */
 
 const Task = ({ task, handleUpdate, handleDelete }) => {
   const style = task.status ? "" : "line-through";
@@ -9,18 +12,19 @@ const Task = ({ task, handleUpdate, handleDelete }) => {
         <span className={style}>{task.description}</span>
       </div>
       <div>
-        <button
+        <Button
           className={task.status ? "Task--buttonComplete" : "hide-button"}
           onClick={() => handleUpdate(task)}
         >
           Complete
-        </button>
-        <button
+        </Button>
+        <Button
+          variant=""
           className="Task--buttonDelete"
           onClick={() => handleDelete(task)}
         >
           Delete
-        </button>
+        </Button>
       </div>
     </div>
   );

@@ -11,10 +11,57 @@ body {
 
 .App {
   max-width: 728px;
+  min-width: 728px;
+
   margin: 2rem auto;
 }
 
-h1 {
+.Form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #444;
+  margin-bottom: 1rem;
+}
+
+.Form > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Form input {
+  background: #f5f6f7;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  display: block;
+  margin: 0.3rem 1rem 0 0;
+  width: 95%;
+}
+
+.Form input:focus {
+  border: 1px solid #ff9900;
+}
+
+.Form button {
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: none;
+  background-color: #ff9900;
+}
+
+.line-through {
+  text-decoration: line-through;
+  color: #777 !important;
+}
+
+.hide-button {
+  display: none;
+}
+
+.App > h1 {
   text-align: center;
   margin: 1rem 0;
 }
@@ -39,23 +86,26 @@ h1 {
   color: #ff9900;
 }
 
-.Task button {
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  cursor: pointer;
-}
-
 .Task--buttonDelete {
   border: none;
   background: #d31515;
+  border-radius: 20px;
   color: #fff;
 }
 
 .Task--buttonComplete {
   border: none;
   background: #12a112;
+  border-radius: 20px;
   color: #fff;
   margin-right: 1rem;
+}
+
+.Logout {
+  float: right;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  border: none;
 }
 
 .Login {
@@ -70,71 +120,23 @@ h1 {
   padding: 2rem 2rem;
 }
 
-p {
+.Login > h1 {
   text-align: center;
-  margin: 1rem;
+  margin: 1rem 0;
+}
+
+.Login input:focus {
+  border: 1px solid #ff9900;
 }
 
 .Redirect {
   font-size: 1.5rem;
-  color: #0000ee;
+  color: #5858f3;
   cursor: pointer;
   text-decoration: underline;
 }
 
-.Logout {
-  float: right;
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  border: none;
-}
-
-.Form {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  background: #444;
-  margin-bottom: 1rem;
-}
-
-.Form > div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.Form input {
-  background: #f5f6f7;
-  padding: 0.5rem 1rem;
-  border: 1px solid #ff9900;
-  border-radius: 10px;
-  display: block;
-  margin: 0.3rem 1rem 0 0;
-}
-
-.Form button {
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  border: none;
-}
-
-.Form--buttonDisabled {
-  background: #ff9900;
-  opacity: 0.5;
-}
-
-.Form--buttonActive {
-  background: #ff9900;
-  cursor: pointer;
-}
-
-.line-through {
-  text-decoration: line-through;
-  color: #777 !important;
-}
-
-.hide-button {
-  display: none;
+p {
+  text-align: center;
+  margin: 1rem;
 }
