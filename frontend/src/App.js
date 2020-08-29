@@ -5,7 +5,7 @@ import "./index.css";
 import taskService from "./services/tasks";
 import LoginForm from "./components/LoginForm";
 import TodoPage from "./components/TodoPage";
-import SingupForm from "./components/SingupForm";
+import SignupForm from "./components/SignupForm";
 import {
   Redirect,
   Route,
@@ -73,7 +73,7 @@ function App() {
           <LoginForm handleLogin={handleLogin} />
         </UnauthenticatedRoute>
         <UnauthenticatedRoute path="/register">
-          <SingupForm handleLogin={handleLogin} />
+          <SignupForm handleLogin={handleLogin} />
         </UnauthenticatedRoute>
 
         <AuthenticatedRoute path="/todo">

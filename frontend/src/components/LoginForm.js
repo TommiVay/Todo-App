@@ -46,7 +46,7 @@ const LoginForm = ({ handleLogin }) => {
     <div className="Login">
       <h1>Todo App</h1>
       <form onSubmit={handleSubmit}>
-        <h2>Sing in</h2>
+        <h2>Sign in</h2>
         <Alert show={notification != null} variant="danger">
           {notification}
         </Alert>
@@ -59,7 +59,7 @@ const LoginForm = ({ handleLogin }) => {
           <FormControl {...removeReset(password)} />
         </FormGroup>
         <Button disabled={!fieldsEmpty()} block size="lg" type="submit">
-          Sing in
+          Sign in
         </Button>
         <div className="Links">
           <p>or</p>

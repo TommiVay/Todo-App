@@ -14,7 +14,7 @@ import {
 } from "react-bootstrap";
 /* eslint-enable no-unused-vars */
 
-const SingupForm = ({ handleLogin }) => {
+const SignupForm = ({ handleLogin }) => {
   const history = useHistory();
   const username = useField("text");
   const password = useField("password");
@@ -65,7 +65,7 @@ const SingupForm = ({ handleLogin }) => {
     <div className="Login">
       <h1>Todo App</h1>
       <form onSubmit={handleSubmit}>
-        <h2>Sing up</h2>
+        <h2>Sign up</h2>
         <Alert show={notification !== null} variant="danger">
           {notification}
         </Alert>
@@ -82,12 +82,12 @@ const SingupForm = ({ handleLogin }) => {
           <FormControl {...removeReset(confirmPassword)} />
         </FormGroup>
         <Button disabled={!fieldsEmpty()} block size="lg" type="submit">
-          Sing up
+          Sign up
         </Button>
         <div className="Links">
           <p>Already have an account?</p>
           <p className="Redirect" onClick={() => history.push("/login")}>
-            Sing in
+            Sign in
           </p>
           <a
             href="https://github.com/TommiVay"
@@ -102,4 +102,4 @@ const SingupForm = ({ handleLogin }) => {
   );
 };
 
-export default SingupForm;
+export default SignupForm;
