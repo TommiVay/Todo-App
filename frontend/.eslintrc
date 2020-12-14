@@ -7,7 +7,7 @@
       "jsx": true
     }
   },
-  "plugins": ["prettier", "react"],
+  "plugins": [ "react", "jest", "cypress"],
   "rules": {
     "prettier/prettier": "error",
     "no-unused-vars": [
@@ -19,6 +19,8 @@
   },
   "env": {
     "es6": true,
-    "browser": true
+    "browser": true,
+    "cypress/globals": true
+
   }
 }

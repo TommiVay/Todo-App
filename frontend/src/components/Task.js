@@ -8,8 +8,8 @@ const Task = ({ task, handleUpdate, handleDelete }) => {
   return (
     <div className="Task">
       <div className="Task--text">
-        <h1 className={style}>{task.name}</h1>
-        <span className={style}>{task.description}</span>
+        <h1 data-cy="taskName" className={style}>{task.name}</h1>
+        <span data-cy="taskDesc" className={style}>{task.description}</span>
       </div>
       <div>
         <Button

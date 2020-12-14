@@ -26,17 +26,17 @@ const TaskForm = ({ createTask }) => {
   return (
     <form className="Form" onSubmit={addTask}>
       <div>
-        <FormGroup controlId="name" size="large">
+        <FormGroup data-cy="name" size="large">
           <FormLabel>Name</FormLabel>
           <FormControl variant="" autoFocus {...removeReset(name)} />
         </FormGroup>
 
-        <FormGroup controlId="description" size="large">
+        <FormGroup data-cy="description" size="large">
           <FormLabel>Description</FormLabel>
           <FormControl {...removeReset(description)} />
         </FormGroup>
       </div>
-      <Button variant="" type="submit" disabled={checkForm}>
+      <Button  data-cy="addTask" variant="" type="submit" disabled={checkForm}>
         Add task
       </Button>
     </form>

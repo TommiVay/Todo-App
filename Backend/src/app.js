@@ -32,4 +32,9 @@ app.use("/tasks", taskRouter);
 app.use("/login", loginRouter);
 app.use("/users", userRouter);
 
+if (process.env.NODE_ENV === "test") {
+  const testingRouter = require("./controllers/testing");
+  app.use("/testing", testingRouter);
+}
+
 module.exports = app;

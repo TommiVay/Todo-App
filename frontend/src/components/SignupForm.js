@@ -69,19 +69,19 @@ const SignupForm = ({ handleLogin }) => {
         <Alert show={notification !== null} variant="danger">
           {notification}
         </Alert>
-        <FormGroup controlId="username" size="large">
+        <FormGroup data-cy="username" size="large">
           <FormLabel>Username</FormLabel>
           <FormControl autoFocus {...removeReset(username)} />
         </FormGroup>
-        <FormGroup controlId="password" size="large">
+        <FormGroup data-cy="password" size="large">
           <FormLabel>Password</FormLabel>
           <FormControl {...removeReset(password)} />
         </FormGroup>
-        <FormGroup controlId="confirmPassword" size="large">
+        <FormGroup data-cy="confirmPassword" size="large">
           <FormLabel>Confirm Password</FormLabel>
           <FormControl {...removeReset(confirmPassword)} />
         </FormGroup>
-        <Button disabled={!fieldsEmpty()} block size="lg" type="submit">
+        <Button data-cy="signUp" disabled={!fieldsEmpty()} block size="lg" type="submit">
           Sign up
         </Button>
         <div className="Links">

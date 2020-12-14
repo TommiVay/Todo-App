@@ -48,7 +48,7 @@ const TodoPage = ({ handleLogout }) => {
         >
           <img src={logo} alt="Github" />
         </a>
-        <Button onClick={handleLogout} className="Logout">
+        <Button data-cy="logout" onClick={handleLogout} className="Logout">
           Logout
         </Button>
         <h1>My Todos</h1>

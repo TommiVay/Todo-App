@@ -50,15 +50,15 @@ const LoginForm = ({ handleLogin }) => {
         <Alert show={notification != null} variant="danger">
           {notification}
         </Alert>
-        <FormGroup controlId="email" size="lg">
+        <FormGroup data-cy="username" size="lg">
           <FormLabel>Username</FormLabel>
           <FormControl autoFocus {...removeReset(username)} />
         </FormGroup>
-        <FormGroup controlId="password" size="lg">
+        <FormGroup data-cy="password" size="lg">
           <FormLabel>Password</FormLabel>
           <FormControl {...removeReset(password)} />
         </FormGroup>
-        <Button disabled={!fieldsEmpty()} block size="lg" type="submit">
+        <Button data-cy="signIn" disabled={!fieldsEmpty()} block size="lg" type="submit">
           Sign in
         </Button>
         <div className="Links">
